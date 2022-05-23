@@ -186,3 +186,11 @@ footer {
 .rad-7 {
     border-radius: 7px;
 }
+
+.modal-section-divider {
+    background: var(--bg-color);
+    padding: 1rem;
+    margin: 0;
+}
+
+
