@@ -22,7 +22,12 @@
     <!-- Jquery Datatables-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+    <!-- Izzytoast-->
+    <link rel="stylesheet" href="/vendor/izzitoast/izzytoast.min.css">
+    <script src='vendor/izzitoast/izzytoast.min.js' type="text/javascript" defer></script>
+
+
+
 
     <script src="/js/jquery-3.6.0.min.js"></script>
 

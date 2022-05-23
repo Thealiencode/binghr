@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -11,6 +12,7 @@ class UsersController extends Controller
         return view('index');
     }
 
+    // This endpoint return the users data in a format jquery datatables understands
     public function get_users(Request $request){
 
         // Data Tables variables
@@ -65,5 +67,30 @@ class UsersController extends Controller
        return json_encode($output);
 
 
+    }
+
+    public function store(Request $request){
+        $request->validate([
+        'employee_id'               => 'required',
+        'firstname'                 => 'required',
+        'lastname'                  => 'required',
+        'email'                     => 'required|unique:users|email',
+        'username'                  => 'required|unique:users',
+        'password'                  => 'required|confirmed',
+        'password_confirmation'     => 'required',
+        'role'                      => 'required',
+        ]);
+
+        $user = User::create([
+            'employee_id' => $request->employee_id,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'phone' => $request->phone,
+            'username'  => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ])->attachRole($request->role);
+
+        return response()->json(['status' => 'success', 'message' => 'User Added Successfully']);
     }
 }
