@@ -167,7 +167,7 @@ aside svg {
     font-size: 13px;
 }
 
-#data-table .action-icons {
+#data-table .action-icons button {
     color: var(--text-primary);
     font-size: 20px;
 }

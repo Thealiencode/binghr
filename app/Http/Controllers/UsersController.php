@@ -50,8 +50,10 @@ class UsersController extends Controller
                 $user->roles->first()->description,
 
                 "<div class='action-icons'>
-                <i class='ri-edit-2-line mr-3'></i>
-                <i class='ri-delete-bin-5-line'></i>
+                    <button class='edit-user btn' data-user_id='$user->id'><i class='ri-edit-2-line mr-3'></i></button>
+                    <button class='delete-user btn' onClick='deleteUser(this)' data-user_id='$user->id'><i class='ri-delete-bin-5-line'></i></button>
+
+
 
                 </div>"
 
@@ -93,5 +95,12 @@ class UsersController extends Controller
         ])->attachRole($request->role);
 
         return response()->json(['status' => 'success', 'message' => 'User Added Successfully']);
+    }
+
+    public function destroy($id){
+
+       User::find($id)->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Successfully User Deleted Successfully']);
     }
 }

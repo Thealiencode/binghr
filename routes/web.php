@@ -24,4 +24,5 @@ Route::controller(UsersController::class)->group(function () {
     Route::get('/', 'index');
     Route::post('/', 'store');
     Route::get('/users', 'get_users');
+    Route::delete('/{id}', 'destroy');
 });

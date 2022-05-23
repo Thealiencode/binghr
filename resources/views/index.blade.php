@@ -194,11 +194,12 @@
 @section('scripts')
 
 <script>
+    var token = "{{ csrf_token() }}"
     tableHeader = $('#table-name').text()
     feather.replace()
 
     $(document).ready( () => {
-        var dataTable = $('#data-table').DataTable({
+        dataTable = $('#data-table').DataTable({
             "paging":   false,
             "ordering": false,
             "info":     false,

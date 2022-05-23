@@ -27,5 +27,32 @@ const TOASTIFY = {
         iziToast.success(options);
         break;
     }
-}
+    }
+
 };
+
+
+deleteUser  = (e) => {
+    var user_id = e.getAttribute('data-user_id')
+    console.log(user_id)
+
+
+    $.ajax({
+        url : `/${user_id}`,
+        type: "DELETE",
+        data: {'_token': token},
+        success: function(response, textStatus, jqXHR) {
+            if(response.status == 'success'){
+                TOASTIFY.show(response.message, 'success')
+                dataTable.ajax.reload();
+
+            }
+            console.log(response);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+        }
+    })
+
+}
+
