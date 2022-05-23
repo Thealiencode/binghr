@@ -1,6 +1,6 @@
 body {
   min-height: 100vh;
-  background: #d1d6db;
+  background: var(--bg-color);
   overflow: hidden;
 
 }
@@ -8,6 +8,8 @@ body {
 
 :root {
     --text-primary: rgb(174, 171, 171);
+    --primary-blue: #007bff;
+    --bg-color: #d1d6db
 }
 
 
@@ -17,6 +19,14 @@ aside {
   height: 100vh;
   max-height: 100vh;
 
+}
+
+.top-nav {
+    height: 55px;
+}
+
+.top-nav .title {
+    font-weight: 300;
 }
 
 
@@ -79,8 +89,8 @@ aside {
 
 .nav-pills .nav-link.active {
     background-color: transparent;
-    border-right: 3px solid #007bff;
-    color: #007bff;
+    border-right: 3px solid var(--primary-blue);
+    color: var(--primary-blue);
     border-radius: 0;
 }
 
@@ -102,6 +112,7 @@ aside {
     right: 5px;
     top: 5px;
     color: var(--text-primary);
+    width: 17px;
 
 }
 
@@ -114,4 +125,57 @@ aside svg {
 .nav-link {
     padding: 0.1rem 1rem;
     margin-bottom: 0.4rem;
+}
+
+.notification-bubble {
+
+
+    padding: 10px 5px 2px 6px;
+    background: var(--primary-blue);
+    position: absolute;
+    padding: 7px 5px 0px 2px;
+    border-radius: 50%;
+    right: 14px;
+    top: 5px;
+}
+
+
+#data-table tr {
+    border: none;
+}
+
+.table-header {
+    background: var(--bg-color);
+}
+
+#data-table_filter input {
+    border: 1px solid var(--bg-color);
+    margin: 2rem 2rem 0 2rem;
+    border-radius: 5px;
+}
+
+.table-row {
+    height: 4rem;
+    padding-left: 2rem;
+}
+#data-table thead {
+    color: var(--text-primary);
+    font-weight: 200;
+}
+
+#data-table .action-icons {
+    color: var(--text-primary);
+    font-size: 20px;
+}
+
+.text-grey {
+    color: var(--text-primary);
+}
+
+.rad-7 {
+    border-radius: 7px;
+}
+
+#data-table tbody td {
+    border-bottom: 1px solid var(--bg-color);
 }
