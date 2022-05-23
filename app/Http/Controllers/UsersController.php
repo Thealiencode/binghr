@@ -25,12 +25,13 @@ class UsersController extends Controller
         $users = User::all();
 
         $data = $users->map(function($user){
+            $user_image = $user->profile_picture ?? 'user.png';
             return [
                 "
                 <div class='d-flex align-items-center pl-4 pb-2 pt-2'>
                         <div class='mr-2' style='width:32px; height:32px'>
 
-                            <img src='/images/users/$user->profile_picture' alt='user' class='rounded-circle w-100' style='height: 100%'>
+                            <img src='/images/users/$user_image' alt='user' class='rounded-circle w-100' style='height: 100%'>
                         </div>
 
                             <div class='d-flex flex-column'>
