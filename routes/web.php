@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UsersController;
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
+});
+
+
+Route::controller(UsersController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/users', 'get_users');
 });

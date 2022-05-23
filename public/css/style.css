@@ -163,6 +163,10 @@ aside svg {
     font-size: 15px;
 }
 
+#data-table td {
+    font-size: 13px;
+}
+
 #data-table .action-icons {
     color: var(--text-primary);
     font-size: 20px;
