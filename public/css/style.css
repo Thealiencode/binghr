@@ -9,7 +9,7 @@ body {
 :root {
     --text-primary: rgb(174, 171, 171);
     --primary-blue: #007bff;
-    --bg-color: #d1d6db
+    --bg-color: #eff4fa
 }
 
 
@@ -160,7 +160,7 @@ aside svg {
 }
 #data-table thead {
     color: var(--text-primary);
-    font-weight: 200;
+    font-size: 15px;
 }
 
 #data-table .action-icons {
@@ -168,14 +168,21 @@ aside svg {
     font-size: 20px;
 }
 
+#data-table tbody td {
+    border-bottom: 1px solid var(--bg-color);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 1rem;
+}
+
+
 .text-grey {
     color: var(--text-primary);
 }
 
 .rad-7 {
     border-radius: 7px;
-}
-
-#data-table tbody td {
-    border-bottom: 1px solid var(--bg-color);
 }
