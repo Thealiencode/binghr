@@ -133,8 +133,8 @@ class UsersController extends Controller
         $user->username  = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        if(!$user->roles->first->name == $request->role){
-
+        if($user->roles->first->name != $request->role){
+            $user->detachRole($user->roles->first->name);
             $user->attachRole($request->role);
         }
 

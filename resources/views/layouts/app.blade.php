@@ -276,6 +276,9 @@
     <script src="/js/index.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
 
+    <script>
+        feather.replace()
+    </script>
     @yield('scripts')
 
   </body>
