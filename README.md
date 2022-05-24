@@ -2,7 +2,9 @@
 ## _Take Home Interview Submitted by Golden Moses_
 
 
-This Application was built with laravel 9 and bootstrap 5
+This Application was built with laravel 9 and bootstrap 5. 
+This is a single page application which offers create, read, update, and delete functionalities without page reload.
+
 
 ## Requirements
 
