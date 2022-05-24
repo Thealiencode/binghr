@@ -34,7 +34,6 @@ const TOASTIFY = {
 
 deleteUser  = (e) => {
     var user_id = e.getAttribute('data-user_id')
-    console.log(user_id)
 
 
     $.ajax({
@@ -48,6 +47,44 @@ deleteUser  = (e) => {
 
             }
             console.log(response);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+        }
+    })
+
+}
+
+getUser = (e) => {
+    var user_id = e.getAttribute('data-user_id')
+    console.log(user_id)
+
+    $.ajax({
+        url : `/users/${user_id}`,
+        type: "GET",
+        data: {'_token': token},
+        success: function(response, textStatus, jqXHR) {
+            if(response.status == 'success'){
+                data = response.data;
+                // Set up form
+                var inputFields = ['firstname', 'lastname', 'username', 'email', 'employee_id', 'phone'];
+                inputFields.forEach( field => {
+
+                    $(`#addModal input[name="${field}"]`).val(data[field]);
+                })
+                // set selected role
+                role = data.roles[0].name
+                // console.log(role);
+                $(`#addModal option[value="${role}"]`).prop('selected', true)
+                $('#modal-lbl').text('Update User')
+                $('#form-submit').text('Update User')
+                $(`#addModal input[name="user_id"]`).val(user_id);
+                $(`#addModal input[name="type"]`).val('update');
+
+                $('#addModal').modal('show')
+
+
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR)

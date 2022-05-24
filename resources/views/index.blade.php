@@ -27,28 +27,6 @@
             <tbody>
 
 
-                {{-- <tr>
-                    <td class="table-row">
-                        <div class="d-flex align-items-center">
-                            <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle mr-2">
-
-                            <div class="d-flex flex-column">
-                                <span>Golden Moses</span>
-                                <small class="text-grey">david_wagner@example.com</small>
-
-                            </div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-primary text-white p-2 rad-7">Super Admin</span></td>
-                    <td>22 oct 2022</td>
-                    <td>Ceo and founder</td>
-                    <td class="action-icons">
-                        <i class="ri-edit-2-line mr-3"></i>
-                        <i class="ri-delete-bin-5-line"></i>
-
-                    </td>
-                </tr> --}}
-
             </tbody>
 
         </table>
@@ -64,11 +42,13 @@
 
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Add User</h5>
+          <h5 class="modal-title" id="modal-lbl">Add User</h5>
           <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="ri-close-line"></i></button>
         </div>
         <div class="modal-body">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="user_id">
+            <input type="hidden" name="type" value="create">
 
                 <div class="mb-3">
                   <input type="text" name="employee_id" id="employee_id" class="form-control" placeholder="Employee ID*">
@@ -223,9 +203,11 @@
                 event.preventDefault();
                 let form = $('#user-form');
                 formData = form.serialize();
+                type  = $(`#addModal input[name="type"]`).val();
+                console.log(type)
 
                 $.ajax({
-                    url : "/",
+                    url : `/${type}`,
                     type: "POST",
                     data : formData,
                     success: function(response, textStatus, jqXHR) {

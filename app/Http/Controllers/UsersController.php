@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -50,7 +51,7 @@ class UsersController extends Controller
                 $user->roles->first()->description,
 
                 "<div class='action-icons'>
-                    <button class='edit-user btn' data-user_id='$user->id'><i class='ri-edit-2-line mr-3'></i></button>
+                    <button class='edit-user btn' onClick='getUser(this)' data-user_id='$user->id'><i class='ri-edit-2-line mr-3'></i></button>
                     <button class='delete-user btn' onClick='deleteUser(this)' data-user_id='$user->id'><i class='ri-delete-bin-5-line'></i></button>
 
 
@@ -102,5 +103,44 @@ class UsersController extends Controller
        User::find($id)->delete();
 
         return response()->json(['status' => 'success', 'message' => 'Successfully User Deleted Successfully']);
+    }
+
+    public function show($id){
+        $user = User::find($id);
+        $role = $user->roles->first()->name;
+        // $user = $user->toarray();
+        // $user->merge(collect(['role' => $user->roles->first()->name]));
+        // array_push($user);
+
+        return response()->json(['status' => 'success', 'data' => $user]);
+    }
+
+    public function update(Request $request){
+        $request->validate([
+            'employee_id'               => 'required',
+            'firstname'                 => 'required',
+            'lastname'                  => 'required',
+            'email'                     => 'required',
+            'username'                  => 'required',
+            'role'                      => 'required',
+            ]);
+        $user = User::find($request->user_id);
+
+        $user->employee_id = $request->employee_id;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->phone = $request->phone;
+        $user->username  = $request->username;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        if(!$user->roles->first->name == $request->role){
+
+            $user->attachRole($request->role);
+        }
+
+        $user->save();
+
+        return response()->json(['status' => 'success', 'message' => 'User Updated Successfully']);
+
     }
 }
